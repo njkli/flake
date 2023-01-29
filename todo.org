@@ -1,0 +1,52 @@
+* NixOS
+** [?] Troubleshoot
+cupsd[751765]: [Job 2] Grayscale/monochrome printing requested for this job but Poppler is not able to convert to grayscale/monochrome PostScript.
+cupsd[751765]: [Job 2] Use \"pdftops-renderer\" option (see cups-filters README file) to use Ghostscript or MuPDF for the PDF -> PostScript conversion.
+
+** [-] Switch to using native Firefox module
+A NixOS module for Firefox exists, which allows preferences and policies to be set.
+This also allows extensions to be installed via the ExtensionSettings policy.
+The new options are under programs.firefox.
+
+** Privacy (web)
+*** zeronet
+There's a module services.zeronet.enable
+
+** youtube
+https://github.com/iv-org/invidious with https://github.com/SimonBrazell/privacy-redirect
+
+** Remote access
+*** shell
+- services.networking.teleport.enable
+
+*** Desktop
+- https://github.com/NixOS/nixpkgs/issues/126265#issuecomment-1365641269
+- https://github.com/NixOS/nixpkgs/issues/126265
+
+*** VPNs
+- https://openziti.github.io
+- https://github.com/juanfont/headscale
+
+** Infrastructure management
+- https://hockeypuck.io
+- https://github.com/netbox-community/netbox
+- https://www.trasa.io
+- https://www.ldap-account-manager.org/lamcms
+- https://www.radiusdesk.com
+
+* Security
+** pam_usb
+Investigate, maybe a good answer. There's a NixOS module security.pam.usb.enable
+
+** key management
+The premise is to have a bip39 mnemonic stored offline and a nixos iso image pre-configured for regenerating keys with mnemonics.
+
+- https://github.com/obelisk/rustica
+- https://gitlab.com/openpgp-ca/openpgp-ca
+
+* Emacs
+** org-mode
+- https://github.com/alphapapa/org-protocol-capture-html
+
+
+* Troubleshoot

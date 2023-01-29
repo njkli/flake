@@ -1,0 +1,68 @@
+name: Daily flake update
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  daily:
+    name: Flake update
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3.2.0
+
+    - uses: cachix/install-nix-action@v18
+      with:
+        nix_path: "nixpkgs=channel:nixos-22.11"
+        install_url: https://releases.nixos.org/nix/nix-2.11.1/install
+        extra_nix_config: |
+          experimental-features = nix-command flakes recursive-nix impure-derivations
+          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+          system-features = nixos-test benchmark big-parallel kvm recursive-nix
+          substituters = https://nrdxp.cachix.org https://njk.cachix.org https://nix-community.cachix.org https://cache.nixos.org
+          trusted-substituters = https://nrdxp.cachix.org https://njk.cachix.org https://nix-community.cachix.org https://cache.nixos.org
+          trusted-public-keys = nrdxp.cachix.org-1:Fc5PSqY2Jm1TrWfm88l6cvGWwz3s93c6IOifQWnhNW4= njk.cachix.org-1:ON4lemYq096ZfK5MtL1NU3afFk9ILAsEnXdy5lDDgKs= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+
+    - uses: jlumbroso/free-disk-space@main
+      with:
+        tool-cache: true
+        android: true
+        dotnet: true
+        haskell: true
+        large-packages: true
+        swap-storage: true
+
+    - uses: cachix/cachix-action@v12
+      with:
+        name: njk
+        signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+        authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    # nix build --json ".#nixosConfigurations.eadrax.config.system.build.toplevel" | jq -r '.[].outputs | to_entries[].value' | cachix push njk
+    - run: nix --print-build-logs --verbose develop --command nvfetcher
+    - run: nix --print-build-logs --verbose develop --command nvfetcher-firefox-addons
+    - run: nix --print-build-logs --verbose develop --command nvfetcher-vscode
+    - run: nix --print-build-logs --verbose flake update
+    - run: nix --print-build-logs --verbose build ".#devShell.x86_64-linux"
+    - run: nix --print-build-logs --verbose build ".#nixosConfigurations.eadrax.config.system.build.toplevel"
+    # - run: nix --print-build-logs --verbose build ".#nixosConfigurations.eadrax.config.system.build.kernel"
+    # - run: nix --print-build-logs --verbose build ".#nixosConfigurations.eadrax.config.boot.kernelPackages.rtl88x2bu"
+    # - run: nix --print-build-logs --verbose build ".#nixosConfigurations.eadrax.config.boot.kernelPackages.zfs"
+
+    - uses: actions/checkout@v3
+    - run: |
+        date > generated.txt
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git commit -a -m "generated"
+        git push
+
+    - uses: umahmood/pushover-actions@main
+      env:
+        PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
+        PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
+      with:
+        status: ${{ job.status }}
+        title: 'flake'
+        message: 'Flake updated'

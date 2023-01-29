@@ -1,0 +1,10 @@
+source 'https://rubygems.org'
+
+gem 'terrapin'
+gem 'clamp'
+gem 'awesome_print'
+gem 'tty'
+gem 'filesize'
+gem 'dry-struct'
+
+gem 'pry'

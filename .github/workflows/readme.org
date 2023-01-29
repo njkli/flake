@@ -1,0 +1,8 @@
+#+title: Github workflows
+* Daily task
+- Branch out
+- nvfetcher update
+- update flake sources
+- evaluate deployment
+- populate binary cache
+- merge with custom commit message

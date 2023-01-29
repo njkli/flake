@@ -1,0 +1,153 @@
+#+TITLE: Readme
+* WORLD
+- highly integrated config of NixOS hosts
+
+  This repository contains my personal home-lab network, it is an ever-changing battlefield of sanity vs convenience and effectiveness vs efficiency.
+  Sometimes the above hypothetical opposites form close alliances and work together, towards a common goal.
+
+- Why ?
+
+  Isolation and containerization techniques and the accompanying orchestration technologies have always produced the config/state maintenance and upgrade toil in exuberant amounts.
+
+** [[file:todo.org::*NixOS][TODO]]
+* Systems layout
+#+begin_src plantuml
+
+@startyaml
+doe: "a deer, a female deer"
+ray: "a drop of golden sun"
+pi: 3.14159
+xmas: true
+french-hens: 3
+calling-birds:
+	- huey
+	- dewey
+	- louie
+	- fred
+xmas-fifth-day:
+	calling-birds: four
+	french-hens: 3
+	golden-rings: 5
+	partridges:
+		count: 1
+		location: "a pear tree"
+	turtle-doves: two
+@endyaml
+
+#+end_src
+
+#+RESULTS:
+: /tmp/babel-NPpESC/plantuml-yqVG5H.png
+
+#+begin_src plantuml
+@startuml
+'Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+'SPDX-License-Identifier: MIT (For details, see https://github.com/awslabs/aws-icons-for-plantuml/blob/master/LICENSE)
+
+!include <awslib/AWSCommon>
+
+' Uncomment the following line to create simplified view
+' !include <awslib/AWSSimplified>
+
+!include <awslib/General/Users>
+!include <awslib/Mobile/APIGateway>
+!include <awslib/SecurityIdentityAndCompliance/Cognito>
+!include <awslib/Compute/Lambda>
+!include <awslib/Database/DynamoDB>
+
+left to right direction
+
+Users(sources, "Events", "millions of users")
+APIGateway(votingAPI, "Voting API", "user votes")
+Cognito(userAuth, "User Authentication", "jwt to submit votes")
+Lambda(generateToken, "User Credentials", "return jwt")
+Lambda(recordVote, "Record Vote", "enter or update vote per user")
+DynamoDB(voteDb, "Vote Database", "one entry per user")
+
+sources --> userAuth
+sources --> votingAPI
+userAuth <--> generateToken
+votingAPI --> recordVote
+recordVote --> voteDb
+
+nwdiag {
+  network Sample_front {
+    address = "192.168.10.0/24"
+    color = "red"
+
+    // define group
+    group web {
+      web01 [address = ".1, .2", shape = "node"]
+      web02 [address = ".2, .3"]
+    }
+  }
+  network Sample_back {
+    address = "192.168.20.0/24"
+    color = "palegreen"
+    web01 [address = ".1"]
+    web02 [address = ".2"]
+    db01 [address = ".101", shape = database ]
+    db02 [address = ".102"]
+
+    // define network using defined nodes
+    group db {
+      db01;
+      db02;
+    }
+  }
+}
+
+@enduml
+
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/babel-A0XSiH/plantuml-fCj3Qn.png]]
+
+#+begin_src plantuml
+@startuml
+listsprite
+@enduml
+
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/babel-A0XSiH/plantuml-qH39m3.png]]
+
+#+begin_src plantuml
+@startuml
+nwdiag {
+  network Sample_front {
+    address = "192.168.10.0/24"
+    color = "red"
+
+    // define group
+    group web {
+      web01 [address = ".1, .2", shape = "node"]
+      web02 [address = ".2, .3"]
+    }
+  }
+  network Sample_back {
+    address = "192.168.20.0/24"
+    color = "palegreen"
+    web01 [address = ".1"]
+    web02 [address = ".2"]
+    db01 [address = ".101", shape = database ]
+    db02 [address = ".102"]
+
+    // define network using defined nodes
+    group db {
+      db01;
+      db02;
+    }
+  }
+}
+@enduml
+
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/babel-A0XSiH/plantuml-xkCMnn.png]]
+
+* Acknowledgements
+Excellent convenience of digga and friends

@@ -1,0 +1,16 @@
+source 'https://rubygems.org'.freeze
+
+gem 'cucumber'
+gem 'cucumber-api-steps', require: false
+
+gem 'nokogiri', '~> 1.13'
+gem 'solargraph'
+gem 'pry'
+gem 'awesome_print'
+gem 'nio4r'
+gem 'puma'
+gem 'rubocop'
+gem 'yard'
+gem 'rake'
+gem 'rspec'
+gem 'mini_portile2', '~> 2.7.0'

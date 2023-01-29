@@ -1,0 +1,15 @@
+keys:
+  - &admin_master age1l8pupr9lxcf3q782sd3yq8we4d7ncr25xelygdmcaj6eyv8763fs9j90nx
+  - &host_NixOS age1pn7wqayn9nevndlh956puqrtl44p4fj60mey9n7xt8jd7f3089rqgs487r
+  - &host_brontitall age1hja2a7uu6rkh989kt490jge84gpglqq8q9gsuxp66n3zdxztkvtsne3esq
+  - &host_eadrax age1pectdtp7k4669wv7eh6fpn2veg06xlkwgluqqr6f48teufe5lgyqcax9ah
+creation_rules:
+  - path_regex: secrets/[^/]+\.yaml$
+    key_groups:
+    # - pgp:
+      # - *host_NixOS
+    - age:
+      - *admin_master
+      - *host_NixOS
+      - *host_brontitall
+      - *host_eadrax

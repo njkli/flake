@@ -1,0 +1,196 @@
+{
+  "blockdevices": [
+    {
+      "name": "sda",
+      "fstype": null,
+      "fsver": null,
+      "label": null,
+      "uuid": null,
+      "fsavail": null,
+      "fsuse%": null,
+      "mountpoint": null,
+      "children": [
+        {
+          "name": "sda1",
+          "fstype": "linux_raid_member",
+          "fsver": "0.90.0",
+          "label": null,
+          "uuid": "883fedf0-20c5-b1a1-c5e2-305bcd65b9ec",
+          "fsavail": null,
+          "fsuse%": null,
+          "mountpoint": null,
+          "children": [
+            {
+              "name": "md127",
+              "fstype": "vfat",
+              "fsver": "FAT32",
+              "label": null,
+              "uuid": "C9E7-081F",
+              "fsavail": "970.5M",
+              "fsuse%": "5%",
+              "mountpoint": "/boot"
+            }
+          ]
+        },
+        {
+          "name": "sda2",
+          "fstype": "zfs_member",
+          "fsver": "5000",
+          "label": "persist",
+          "uuid": "16851499628901489829",
+          "fsavail": null,
+          "fsuse%": null,
+          "mountpoint": null
+        },
+        {
+          "name": "sda3",
+          "fstype": "zfs_member",
+          "fsver": "5000",
+          "label": "rpool",
+          "uuid": "15435921726947444665",
+          "fsavail": null,
+          "fsuse%": null,
+          "mountpoint": null
+        }
+      ]
+    },
+    {
+      "name": "sdb",
+      "fstype": null,
+      "fsver": null,
+      "label": null,
+      "uuid": null,
+      "fsavail": null,
+      "fsuse%": null,
+      "mountpoint": null,
+      "children": [
+        {
+          "name": "sdb1",
+          "fstype": "linux_raid_member",
+          "fsver": "0.90.0",
+          "label": null,
+          "uuid": "883fedf0-20c5-b1a1-c5e2-305bcd65b9ec",
+          "fsavail": null,
+          "fsuse%": null,
+          "mountpoint": null,
+          "children": [
+            {
+              "name": "md127",
+              "fstype": "vfat",
+              "fsver": "FAT32",
+              "label": null,
+              "uuid": "C9E7-081F",
+              "fsavail": "970.5M",
+              "fsuse%": "5%",
+              "mountpoint": "/boot"
+            }
+          ]
+        },
+        {
+          "name": "sdb2",
+          "fstype": "zfs_member",
+          "fsver": "5000",
+          "label": "persist",
+          "uuid": "16851499628901489829",
+          "fsavail": null,
+          "fsuse%": null,
+          "mountpoint": null
+        },
+        {
+          "name": "sdb3",
+          "fstype": "zfs_member",
+          "fsver": "5000",
+          "label": "rpool",
+          "uuid": "15435921726947444665",
+          "fsavail": null,
+          "fsuse%": null,
+          "mountpoint": null
+        }
+      ]
+    },
+    {
+      "name": "mmcblk0",
+      "fstype": null,
+      "fsver": null,
+      "label": null,
+      "uuid": null,
+      "fsavail": null,
+      "fsuse%": null,
+      "mountpoint": null,
+      "children": [
+        {
+          "name": "mmcblk0p1",
+          "fstype": "linux_raid_member",
+          "fsver": "0.90.0",
+          "label": null,
+          "uuid": "883fedf0-20c5-b1a1-c5e2-305bcd65b9ec",
+          "fsavail": null,
+          "fsuse%": null,
+          "mountpoint": null,
+          "children": [
+            {
+              "name": "md127",
+              "fstype": "vfat",
+              "fsver": "FAT32",
+              "label": null,
+              "uuid": "C9E7-081F",
+              "fsavail": "970.5M",
+              "fsuse%": "5%",
+              "mountpoint": "/boot"
+            }
+          ]
+        },
+        {
+          "name": "mmcblk0p2",
+          "fstype": "zfs_member",
+          "fsver": "5000",
+          "label": "persist",
+          "uuid": "16851499628901489829",
+          "fsavail": null,
+          "fsuse%": null,
+          "mountpoint": null
+        }
+      ]
+    },
+    {
+      "name": "mmcblk0boot0",
+      "fstype": null,
+      "fsver": null,
+      "label": null,
+      "uuid": null,
+      "fsavail": null,
+      "fsuse%": null,
+      "mountpoint": null
+    },
+    {
+      "name": "mmcblk0boot1",
+      "fstype": null,
+      "fsver": null,
+      "label": null,
+      "uuid": null,
+      "fsavail": null,
+      "fsuse%": null,
+      "mountpoint": null
+    },
+    {
+      "name": "zd0",
+      "fstype": "swap",
+      "fsver": "1",
+      "label": null,
+      "uuid": "50c8afeb-b199-4561-a229-74acdd4fd2ff",
+      "fsavail": null,
+      "fsuse%": null,
+      "mountpoint": null
+    },
+    {
+      "name": "zram0",
+      "fstype": null,
+      "fsver": null,
+      "label": null,
+      "uuid": null,
+      "fsavail": null,
+      "fsuse%": null,
+      "mountpoint": "[SWAP]"
+    }
+  ]
+}

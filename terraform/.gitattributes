@@ -1,0 +1,2 @@
+env/*/terraform.tfstate filter=git-crypt diff=git-crypt
+env/*/terraform.tfstate.backup filter=git-crypt diff=git-crypt
